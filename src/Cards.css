@@ -37,7 +37,7 @@
   display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px) and (hover: none){
   .main-nav {
     justify-content: space-between;
     padding: 10px 20px;
@@ -87,9 +87,6 @@
   .mobile-menu .nav-item {
     display: block;
     padding: 10px;
-  }
-  .nav-item:hover{
-    display: none;
   }
 }
 
