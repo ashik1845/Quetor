@@ -88,6 +88,9 @@
     display: block;
     padding: 10px;
   }
+  .nav-item:hover{
+    display: none;
+  }
 }
 
 
