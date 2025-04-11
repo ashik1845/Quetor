@@ -1,18 +1,24 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+/* Navbar */
 .main-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px;
-  margin: 0 auto 20px auto; /* ⬅ Centers it horizontally */
+  margin: 20px auto 20px auto;
   border-radius: 50px;
   width: 50%;
   border: 1px solid #fff;
-  backdrop-filter: blur(7.5px);
-  background-color: #000000;
+  background-color: #000;
   position: relative;
   z-index: 1110;
 }
-
 
 .nav-item {
   padding: 10px 20px;
@@ -25,12 +31,10 @@
 
 .nav-item:hover {
   background-color: #fff;
-  color: #000000;
+  color: #000;
   border-radius: 50px;
   transition: all ease 0.5s;
 }
-
-
 
 /* Hamburger Menu */
 .mobile-nav {
@@ -42,14 +46,6 @@
     justify-content: space-between;
     padding: 10px 20px;
   }
-
-  .logoo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-  }
-  
 
   .nav-item {
     display: none;
@@ -73,16 +69,12 @@
     left: 0;
     width: 100%;
     z-index: 100;
-    border-radius: 50px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 10px;
     background: #000000;
     text-align: center;
     padding: 10px 0;
     padding-top: 30px;
   }
-
-  
 
   .mobile-menu .nav-item {
     display: block;
@@ -90,74 +82,91 @@
   }
 }
 
+/* Layout Section */
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 5%;
+  flex-wrap: wrap;
+}
 
+.left-content {
+  flex: 1;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.left-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.left-content p {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.right-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  
+}
 
 .cards-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 400px;
-    margin: 5rem auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-  }
-  
-  .card {
-    position: absolute;
-    width: 250px;
-    height: 350px;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: #333;
-    transition: transform 0.5s ease, z-index 0.5s ease;
-    cursor: pointer;
-  }
-  
-  .card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #384047;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 0.5rem;
-  }
-  
-  .card ul {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-    line-height: 1.5;
-  }
-  
-  .card .price {
-    margin-top: auto;
-    font-size: 1.2rem;
-    font-weight: bold;
+  position: relative;
+  width: 350px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.card {
+  width: 300px;
+  height: 220px;
+  border-radius: 25px;
+  position: absolute;
+  transition: transform 0.3s ease, z-index 0s; /* smoother animation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+}
+
+/* When a card is active (front), scale it up */
+.card.active {
+  transform: scale(1.05);
+  transition: transform 0.3s ease, z-index 0s; /* no z-index delay */
+}
+
+.label {
+  padding: 15px 25px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Responsive Layout */
+@media (max-width: 1000px) {
+  .section {
+    flex-direction: column;
     text-align: center;
-    background-color: #60992D;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
   }
-  
-  .card.active {
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+
+  .left-content, .right-container {
+    max-width: 100%;
+    padding: 20px;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .cards-container {
-      flex-direction: column;
-      height: auto;
-      max-width: 300px;
-    }
-    .card {
-      position: relative;
-      transform: none !important;
-      margin-bottom: 1rem;
-      width: 80%;
-    }
+
+  .cards-container {
+    margin-top: 30px;
   }
-  
+}
+.card{
+  width: 200px;
+  height: 200px;
+}

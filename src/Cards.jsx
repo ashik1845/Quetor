@@ -3,34 +3,43 @@ import './Cards.css';
 
 const cardsData = [
   {
-    id: 0,
-    title: 'Free',
-    features: ['Single User', 'Up to two devices', '1GB file storage', 'Local support'],
-    price: 'Rs:100',
-    color: '#f4f7f7',
-  },
-  {
     id: 1,
-    title: 'Standard',
-    features: ['3 Users', 'Unlimited Devices', '5GB Storage', 'Priority Support'],
-    price: 'Rs:300',
-    color: '#e6f0ff',
+    content: "Emergency Info",
+    bg: "#ff3b3f",
+    color: "#fff",
+    top: 0,
+    left: 75,
   },
   {
     id: 2,
-    title: 'Premium',
-    features: ['5 Users', 'Unlimited', '10GB Storage', 'Premium Support'],
-    price: 'Rs:500',
-    color: '#fff0f5',
+    content: "Rider Details",
+    bg: "#000",
+    color: "#fff",
+    top: 120,
+    left: 0,
+  },
+  {
+    id: 3,
+    content: "Helmet Status",
+    bg: "#7f8c00",
+    color: "#fff",
+    top: 120,
+    left: 150,
   },
 ];
 
 const Cardss = () => {
-  const [activeIndex, setActiveIndex] = useState(1); // middle one is active by default
+  const [frontCard, setFrontCard] = useState(3);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Update state when resizing
+  const handleClick = (cardId) => {
+    setFrontCard(cardId);
+  };
+
+  const getZIndex = (id) =>
+    id === frontCard ? 3 : id === ((frontCard % 3) + 1) ? 2 : 1;
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1000);
     window.addEventListener("resize", handleResize);
@@ -46,7 +55,6 @@ const Cardss = () => {
             <a href="#" className="nav-item nav-active">Home</a>
             <a href="#" className="nav-item">About</a>
             <a href="#" className="nav-item">Service</a>
-            
             <a href="#" className="nav-item">Contact</a>
           </>
         ) : (
@@ -59,7 +67,6 @@ const Cardss = () => {
                 <a href="#" className="nav-item">Home</a>
                 <a href="#" className="nav-item">About</a>
                 <a href="#" className="nav-item">Service</a>
-                
                 <a href="#" className="nav-item">Contact</a>
               </div>
             )}
@@ -67,34 +74,36 @@ const Cardss = () => {
         )}
       </header>
 
-      {/* Cards */}
-      <div className="cards-container">
-        {cardsData.map((card, index) => {
-          const isActive = index === activeIndex;
-          const zIndex = index === activeIndex ? 3 : index > activeIndex ? 2 : 1;
-          const translateX = (index - activeIndex) * 80;
+      {/* Content Section */}
+      <div className="section">
+        <div className="left-content">
+          <h1>Smart Rider Safety</h1>
+          <p>
+            These cards provide crucial insights into the rider's safety and status. Click on each to bring it into focus and explore how we integrate emergency info, helmet detection, and rider details into one smart system.
+          </p>
+        </div>
 
-          return (
-            <div
+        <div className="right-container">
+          <div className="cards-container">
+            {cardsData.map((card) => (
+              <div
               key={card.id}
-              className={`card ${isActive ? 'active' : ''}`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleClick(card.id)}
+              className={`card ${card.id === frontCard ? "active" : ""}`}
               style={{
-                zIndex,
-                transform: `translateX(${translateX}%) scale(${isActive ? 1.1 : 0.9})`,
-                backgroundColor: card.color,
+                zIndex: getZIndex(card.id),
+                top: `${card.top}px`,
+                left: `${card.left}px`,
+                backgroundColor: card.bg,
+                color: card.color,
               }}
             >
-              <h1>{card.title}</h1>
-              <ul>
-                {card.features.map((feature, i) => (
-                  <li key={i}>{feature}</li>
-                ))}
-              </ul>
-              <p className="price">{card.price}</p>
+              <div className="label">{card.content}</div>
             </div>
-          );
-        })}
+            
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
