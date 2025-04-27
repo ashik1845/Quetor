@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+.types-services-section {
+  padding: 50px;
+  font-family: 'Nunito', sans-serif;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  margin: 0;
+}
+
+.types-services-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  z-index: 2;
+  color: #1E1E1E;
+}
+
+.types-services-title .types-services-highlight {
+  color:#FFC365;
+  z-index: 10;
+}
+
+.types-services-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.types-services-content.reverse {
+  flex-direction: row-reverse;
+}
+
+.types-services-service-img {
+  width: 45%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.types-services-content-box {
+  width: 500px;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 2;
+}
+
+.types-services-service-heading {
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.types-services-service-description {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #4D4D4D;
+  z-index: 2;
+}
+
+.types-services-feature-title {
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  z-index: 2;
+  color: #1E1E1E;
+}
+
+.types-services-feature-list {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  color: #4D4D4D;
+  z-index: 2;
+}
+
+.types-services-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.types-services-tick {
+  color: #F5B400;
+  font-weight: 900;
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  transform: rotate(7deg);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.donut-circle-container {
+  position: absolute; /* Keep the donut fixed near the top */
+  top: 50%; /* Position at 50% from the top */
+  left: 50%; /* Position at 50% from the left */
+  transform: translate(-50%, -50%); /* Center it */
+  z-index: -100; /* Ensures donut appears above other content */
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Donut won't block interactions */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for movement */
+}
+
+.donut-circle {
+  width: 600px; /* Use viewport width to make the donut responsive */
+  height: 600px; /* Same as width to maintain aspect ratio */
+  max-width: 600px; /* Set a maximum size */
+  max-height: 600px; /* Set a maximum size */
+  pointer-events: none; /* Prevent the donut from interfering with clicks */
+  object-fit: contain; /* Ensure the image fits properly */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .donut-circle {
+    width: 600px; /* Reduce size for medium screens */
+    height: 600px;
+  }
+}
+
+@media (max-width: 800px) {
+  .donut-circle {
+    width: 450px; /* Adjust for smaller screens */
+    height: 450px;
+  }
+
+  .types-services-service-heading {
+    font-size: 30px;
+  }
+
+  .types-services-title {
+    font-size: 30px;
+  }
+
+  .types-services-service-description {
+    font-size: 15px;
+  }
+
+  .types-services-feature-title {
+    font-size: 17px;
+  }
+
+  .types-services-feature-list {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .donut-circle {
+    width: 350px; /* Further reduce size for very small screens */
+    height: 350px;
+  }
+}

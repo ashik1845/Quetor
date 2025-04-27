@@ -1,0 +1,391 @@
+.exploreform-container {
+    width: 80%;
+    margin: auto;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .exploreform-heading {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #000000;
+  }
+  
+  .exploreform-highlight {
+    color: #F7B500;
+  }
+  
+  .exploreform-form {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+  
+  .exploreform-left,
+  .exploreform-right {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .exploreform-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    position: relative;
+  }
+  
+  .exploreform-input,
+  .exploreform-select {
+    width: 100%;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #4D4D4D;
+    background: transparent;
+    outline: none;
+    padding: 12px 0 8px 0;
+  }
+  
+  .exploreform-dropdown {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .exploreform-dropdown-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #4D4D4D;
+    background: transparent;
+    padding-right: 30px;
+  }
+  
+  .exploreform-dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid #A7A7A7;
+    border-bottom: 2px solid #A7A7A7;
+    transform: rotate(-45deg) translateY(-100%);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .exploreform-dropdown-arrow.open {
+    transform: rotate(135deg);
+  }
+  
+  .exploreform-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #A7A7A7;
+    margin-top: 60px;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
+    animation: dropdownAnimation 0.3s ease-out;
+  }
+  
+  .exploreform-dropdown-list div {
+    padding: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #4D4D4D;
+    cursor: pointer;
+  }
+  
+  @keyframes dropdownAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .exploreform-underline {
+    width: 100%;
+    height: 1px;
+    background-color: #A7A7A7;
+    opacity: 0.5;
+    margin-top: 20px;
+  }
+  .exploreform-button-wrapper {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+  }
+  .exploreform-button {
+    background: #FFD971;
+    background: radial-gradient(circle, rgba(255, 217, 113, 1) 0%, rgba(186, 137, 4, 1) 100%);
+    border: none;
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+    padding: 10px 50px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #4D4D4D;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .exploreform-arrow {
+    position: absolute;
+    top: 80%; /* Exactly below the button */
+    left: 108%; /* Move it towards the right */
+    transform: translateX(-50%); /* Center it nicely */
+    margin-top: -10px; /* Pull it slightly up if needed */
+    width: 80px; /* Adjust width */
+    height: auto;
+    z-index: 1; /* Behind the button */
+  }
+  
+  .exploreform-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .exploreform-next-heading {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 150px;
+  }
+  
+  .exploreform-next-highlight {
+    color: #F7B500;
+  }
+  @media (max-width: 768px) {
+
+    .exploreform-arrow {
+      top: 90%; /* Exactly below the button */
+      left: 108%; /* Move it towards the right */
+       /* Center it nicely */
+      margin-top: -10px; /* Pull it slightly up if needed */
+      width: 60px; /* Adjust width */
+       /* Behind the button */
+    }
+    
+    .exploreform-heading,
+    .exploreform-next-heading {
+      font-size: 26px;
+    }
+    .exploreform-next-heading {
+      margin-top: 110px;
+    }
+    
+
+    .exploreform-dropdown-arrow {
+        width: 10px;
+        height: 10px;
+    }
+  
+    .exploreform-input,
+    .exploreform-select,
+    .exploreform-dropdown-selected,
+    .exploreform-dropdown-list div {
+      font-size: 14px;
+    }
+  
+    .exploreform-button {
+      font-size: 13px;
+      padding: 8px 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .exploreform-heading,
+    .exploreform-next-heading {
+      font-size: 22px;
+    }
+    .exploreform-dropdown-arrow {
+        width: 8px;
+        height: 8px;
+    }
+    .exploreform-input,
+    .exploreform-select,
+    .exploreform-dropdown-selected,
+    .exploreform-dropdown-list div {
+      font-size: 12px;
+    }
+  
+    .exploreform-button {
+      font-size: 12px;
+      padding: 6px 20px;
+    }
+  }
+
+  .exploreform-images-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+  }
+  
+  .exploreform-image-item {
+    width: 160px; /* Fixed width */
+    height: 160px; /* Fixed height */
+    position: relative;
+    background-image: url('./assets/dashed-border-image.png');
+    background-size: 100% 100%; /* Make it cover fully */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .exploreform-circle {
+    width: 150px;
+    height: 150px;
+    background-color: #F9FAFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .exploreform-circle-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500; /* Montserrat Medium */
+    text-align: center;
+    line-height: 1.2;
+    color: #4D4D4D;
+    padding: 10px;
+    word-break: break-word;
+    
+  }
+  
+  /* Responsive for tablets and mobiles */
+  @media (max-width: 950px) {
+
+    .exploreform-images-container {
+      
+      justify-content: space-between;
+      margin-top: 40px;
+      margin-bottom: 100px;
+    }
+    .exploreform-image-item {
+      width: 120px; /* Fixed width */
+      height: 120px; /* Fixed height */
+      position: relative;
+
+    }
+    
+  
+    .exploreform-circle {
+      width: 110px;
+      height: 110px;
+    }
+  
+    .exploreform-circle-text {
+      font-size: 14px;
+    }
+  }
+  
+  
+
+.exploreform-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 30px;
+  width: 335px;
+  height: auto;
+  background-color: #FBF1D8;
+  color: #4D4D4D;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500; /* Montserrat Medium */
+  font-size: 18px;
+  text-align: left;
+  
+  z-index: 10;
+  white-space: normal;
+}
+
+/* Small triangle at top-left */
+.exploreform-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  border-width: 0 30px 30px 30px;
+  border-style: solid;
+  border-color: transparent transparent #FBF1D8 transparent;
+}
+
+/* Show tooltip on hover */
+.exploreform-circle:hover .exploreform-tooltip {
+  display: block;
+}
+
+/* Special case: if it's last item, tooltip should adjust to left */
+.exploreform-image-item:last-child .exploreform-tooltip {
+  left: auto;
+  right: 0;
+}
+
+/* Adjust triangle position for last tooltip */
+.exploreform-image-item:last-child .exploreform-tooltip::before {
+  left: auto;
+  right: 20px;
+}
+@media (max-width: 650px) {
+
+  .exploreform-images-container {
+ /* Allow wrapping */
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 100px;
+  }
+  .exploreform-image-item {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    position: relative;
+
+  }
+  .exploreform-tooltip {
+    margin-top: 30px;
+    width: 235px;
+    height: auto;
+    
+    padding: 20px;
+   
+    font-size: 13px;
+    white-space: normal;
+    }
+
+  .exploreform-circle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .exploreform-circle-text {
+    font-size: 10px;
+  }
+}
+

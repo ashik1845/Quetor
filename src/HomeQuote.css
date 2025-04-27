@@ -1,0 +1,64 @@
+.quote-banner {
+    background-color: #FEFAEF;
+    padding: 40px 20px;
+    height: 300px;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .quote-text {
+    font-size: clamp(20px, 4vw, 40px);
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+    z-index: 1;
+    max-width: 90%;
+    line-height: 1.4;
+    position: relative;
+  }
+  
+  /* Positioning Images */
+  .quote-left,
+  .quote-right,
+  .star {
+    position: absolute;
+  }
+  
+  /* Default Sizes */
+  .quote-left,
+  .quote-right {
+    width: clamp(40px, 6vw, 80px);
+  }
+  
+  .star {
+    width: clamp(16px, 4vw, 30px);
+  }
+  
+  /* Top Left Coner */
+  .quote-left {
+    top: clamp(40px, 10vw, 40px);
+    left: clamp(40px, 10vw, 80px);
+  }
+  
+  .star-left {
+    top: clamp(50px, 5vw, 50px);
+    left: calc(clamp(40px, 10vw, 150px) + clamp(60px, 6vw, 80px));
+  }
+  
+  /* Bottom Right Corner */
+  .quote-right {
+    bottom: clamp(40px, 10vw, 40px);
+    right: clamp(40px, 10vw, 80px);
+  }
+  
+  .star-right {
+    bottom: clamp(50px, 5vw, 50px);
+    right: calc(clamp(40px, 10vw, 150px) + clamp(60px, 6vw, 80px));
+    width: clamp(10px, 2vw, 20px);
+  }
+  

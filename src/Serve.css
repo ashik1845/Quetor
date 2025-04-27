@@ -1,0 +1,58 @@
+
+  .serve-container {
+ 
+    max-width: 1501px;
+    height: 260px;
+    background-color: #F9FAFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto; /* center it horizontally */
+    padding: 20px; /* add some padding for better spacing */
+    box-sizing: border-box; /* include padding and border in the element's total width and height */
+    overflow: hidden;
+    z-index: 10;
+}
+
+.serve-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #333; /* adjust based on your design */
+    line-height: 1.6;
+    max-width: 1000px;
+    padding: 10px; /* add some padding for better spacing */
+    box-sizing: border-box; /* include padding and border in the element's total width and height */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .serve-container {
+        height: auto;
+    }
+
+    .serve-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .serve-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .serve-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .serve-container {
+        padding: 10px;
+    }
+
+    .serve-text {
+        font-size: 14px;
+    }
+}

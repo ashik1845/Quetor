@@ -1,0 +1,277 @@
+.footer {
+  background-color: #272727;
+  color: #fff;
+  padding: 2.5vw 5vw 2vw;
+  font-family: 'Segoe UI', sans-serif;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow-x: hidden;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  text-align: center;
+  gap: 2vw;
+  padding-top: 60px;
+}
+
+.footer-section {
+  flex: 1 1 0;
+  min-width: 200px;
+  max-width: 350px;
+  font-size: 1.1rem; /* Initial text size */
+}
+
+.quick-links {
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.quick-links h4 {
+  color: #ffb547;
+  margin-bottom: 40px;
+  text-align: right;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-links li {
+  margin-bottom: 10px;
+  text-align: right;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  color: #FFFFFF;
+}
+
+.reach-us {
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.reach-us h4 {
+  color: #ffb547;
+  margin-bottom: 40px;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+}
+
+.reach-us ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reach-us li {
+  margin-bottom: 1vw;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  text-align: left;
+  gap: 0.5rem;
+  color: #FFFFFF;
+}
+
+.center {
+  text-align: center;
+}
+
+.footer-logo {
+  max-width: 9vw;
+  margin-bottom: 1vw;
+  padding-top: 20px;
+}
+
+.center p {
+  margin: 0.5vw 0;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #FFFFFF;
+}
+
+.center .sub-text {
+  color: #A7A7A7;
+  font-size: 0.9rem;
+  margin-top: 1vw;
+  padding-top: 60px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.vertical-line {
+  width: 1px;
+  height: auto;
+  min-height: 200px;
+  background-color: #555;
+  align-self: stretch;
+  margin: 0 1vw;
+  display: block;
+}
+
+.footer-bottom {
+  margin-top: 2vw;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.footer-bottom .terms {
+  order: 2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+.footer-bottom .copyright {
+  order: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+/* Media queries for text size reduction */
+
+@media (max-width: 1200px) {
+  .footer-section,
+  .quick-links h4,
+  .reach-us h4,
+  .quick-links li,
+  .reach-us li,
+  .center p {
+    font-size: calc(1.1rem - 1px);
+  }
+}
+
+@media (max-width: 992px) {
+  .footer-section,
+  .quick-links h4,
+  .reach-us h4,
+  .quick-links li,
+  .reach-us li,
+  .center p {
+    font-size: calc(1.1rem - 2px);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-section,
+  .quick-links h4,
+  .reach-us h4,
+  .quick-links li,
+  .reach-us li,
+  .center p {
+    font-size: calc(1.1rem - 3px);
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-section,
+  .quick-links h4,
+  .reach-us h4,
+  .quick-links li,
+  .reach-us li,
+  .center p {
+    font-size: calc(1.1rem -4px);
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 729px) {
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-section {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-logo {
+    max-width: 25vw;
+    margin-bottom: 1vw;
+  }
+
+  .quick-links,
+  .reach-us {
+    text-align: center;
+  }
+
+  .reach-us h4,
+  .quick-links h4,
+  .reach-us li,
+  .quick-links li {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .reach-us li,
+  .quick-links li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .center {
+    order: 1;
+  }
+
+  .quick-links {
+    order: 2;
+  }
+
+  .reach-us {
+    order: 3;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 1vw;
+  }
+
+  .footer-bottom .terms,
+  .footer-bottom .copyright {
+    text-align: center;
+  }
+
+  .footer-bottom .terms {
+    order: 4;
+  }
+
+  .footer-bottom .copyright {
+    order: 5;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+}

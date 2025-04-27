@@ -1,0 +1,146 @@
+/* ready.css */
+
+.ready-container {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ready-heading {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+}
+
+.ready-highlight {
+  color: #FFC365; /* or any brand color */
+}
+
+.ready-subtext {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: #4D4D4D;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.ready-buttons {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+  z-index: 2;
+}
+
+.ready-button {
+  background: #FFD971;
+  background: radial-gradient(circle, rgba(255, 217, 113, 1) 0%, rgba(186, 137, 4, 1) 100%);
+  display: flex;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #4D4D4D;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ready-button:hover {
+  transform: scale(1.05);
+}
+
+.ready-arc {
+  position: absolute;
+  width: 2000px;
+  height: 1000px;
+  border-radius: 50%;
+  border: 2px solid #f3d8a0; /* darker outline */
+  background-color: #fefaef;
+  transform: scale(1);
+  opacity: 0.4;
+  transition: transform 1.5s ease;
+  z-index: 0;
+}
+
+.ready-top-arc {
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.1);
+}
+
+.ready-mid-arc {
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.1);
+}
+
+.ready-animate.ready-top-arc,
+.ready-animate.ready-mid-arc {
+  transform: translateX(-50%) scale(1);
+}
+
+.ready-star {
+  position: absolute;
+  top: 145px;
+  left: 13%;
+  width: 15px;
+  height: auto;
+  z-index: 3;
+}
+
+@media (max-width:800px){
+  .ready-heading {
+   
+    font-size: 30px;
+  }
+  .ready-subtext {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+  .ready-button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .ready-arc {
+    
+    width: 1200px;
+    height: 1000px;
+  }
+  
+}
+@media (max-width:500px){
+  .ready-heading {
+   
+    font-size: 25px;
+  }
+  .ready-subtext {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .ready-button {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+  .ready-buttons {
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .ready-arc {
+    
+    width: 1000px;
+    height: 1000px;
+  }
+}

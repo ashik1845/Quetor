@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap');
+
+.About-keyfeatures-container {
+  padding: 40px 10px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.About-keyfeatures-heading {
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.About-keyfeatures-heading-key {
+  color: #FFC365;
+}
+
+.About-keyfeatures-subtext {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.About-keyfeatures-feature {
+  margin-top: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.About-keyfeatures-img-left {
+  flex-direction: row;
+}
+
+.About-keyfeatures-img-right {
+  flex-direction: row-reverse;
+}
+
+.About-keyfeatures-img-wrapper {
+  position: relative;
+  width: fit-content;
+  display: inline-block;
+}
+
+.About-keyfeatures-img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  
+}
+
+.speedometer-curve{
+  position: absolute;
+  top: -15px;
+  left: 10%;
+  width: 80%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.About-keyfeatures-text {
+  max-width: 550px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.About-keyfeatures-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.About-keyfeatures-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.arrow-container {
+  position: absolute;
+  top: 30px;
+  left: 51%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 30px;
+  height: 60px;
+  pointer-events: none;
+}
+
+.arrow-image {
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom center;
+  transform: rotate(-90deg);
+  transition: transform 4s ease-in-out;
+}
+
+/* Animate when wrapper has .fill-curve */
+.fill-curve .curve-fill {
+  stroke-dashoffset: 100;
+}
+
+.curve-fill {
+  transition: stroke-dashoffset 4s ease-in-out;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+}
+
+.fill-curve .arrow-image {
+  transform: rotate(43deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .About-keyfeatures-heading {
+    font-size: 32px;
+  }
+
+  .About-keyfeatures-subtext {
+    font-size: 15px;
+  }
+
+  .About-keyfeatures-feature {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .About-keyfeatures-img {
+    max-width: 150px;
+  }
+
+  .About-keyfeatures-title {
+    font-size: 24px;
+  }
+
+  .About-keyfeatures-description {
+    font-size: 18px;
+  }
+
+  .speedometer-curve {
+    top: -15px;
+  }
+
+  .arrow-container {
+    position: absolute;
+    top: 12px;
+    left: 51%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: 20px;
+    height: 40px;
+    pointer-events: none;
+  }
+
+  
+}
+
+/* Already existing styles kept unchanged above... */
+.loading-dots {
+  position: absolute;
+  bottom: 57px;
+  right: 27px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 4;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  animation: scalePulse 1.5s ease-in-out infinite;
+  transform-origin: center;
+  opacity: 1;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.3s;
+}
+
+.dot3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes scalePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .loading-dots {
+    bottom: 35px;
+    right: 15px;
+    gap: 5px;
+  }
+  .dot {
+    width: 5px;
+    height: 5px;
+  }  
+}
+
+.lock-handle-img {
+  position: absolute;
+  top: 5px;
+  left: 38%;
+  transform: translateX(-50%);
+  width: 60px;
+  transition: top 1.2s ease-in-out;
+  z-index: 2;
+}
+
+.lock-animate {
+  top: 30px;
+}
+
+.lock-img {
+  position: absolute;
+  bottom: 175px; /* adjust vertical placement */
+  left: 38%; /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 9999; /* ensure it's above other elements */
+  width: 70px; /* adjust size */
+}
+
+.lock-effect-img {
+  position: absolute;
+  top: 50px;
+  left: 45px;
+  width: 12px;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Optional smooth fade-in */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.img4-wrapper {
+  position: relative;
+  overflow: visible;
+  display: inline-block;
+}
+
+.pipe-container {
+  position: absolute;
+  top: 41px; /* adjust as needed */
+  left: 0;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.pipe-img {
+  position: relative;
+  left: -100px;
+  width: 170px;
+  transition: left 1.5s ease-in-out;
+  z-index: 3;
+}
+
+.pipe-move {
+  left: 0;
+}
+
+.img5-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Message animation inside img5 */
+.message-img {
+  position: absolute;
+  top: 30px; /* start outside above */
+  right: 40px; /* start outside to the right */
+  width: 30px;
+  opacity: 0;
+  transform: translate(0, 0);
+  transition: transform 1s ease, opacity 1s ease;
+  z-index: 2;
+}
+.reset-message {
+  animation: flyOutMessage 1.5s ease-out forwards;
+}
+/* Trigger animation */
+.animate-message {
+  animation: flyInMessage 1.5s ease-out forwards;
+}
+
+@keyframes flyInMessage {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, 30px) scale(0.1); /* start off-screen and tiny */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1); /* normal size and position */
+  }
+}
+
+@keyframes flyOutMessage {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+     /* start off-screen and tiny */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-30px, 30px) scale(0); /* normal size and position */
+  }
+}
+
+/* Existing animation (fade in) */
+@keyframes thumbsUpAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* New animation for fade out */
+@keyframes thumbsUpFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+  
+}
+
+.thumbs-up-img {
+  position: absolute;
+  z-index: 5;
+  bottom: 244px;
+  right: 45px;
+  width: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.thumbs-up-fade-in {
+  animation: thumbsUpAnimation 1s forwards;
+}
+
+.thumbs-up-fade-out {
+  animation: thumbsUpFadeOut 0s forwards;
+}
+
+
+@media (max-width: 768px) {
+  .lock-handle-img {
+    width: 30px;
+    top: 7px;
+  }
+
+  .lock-animate {
+    top: 19px;
+  }
+  .lock-img {
+    position: absolute;
+    bottom: 110px; /* adjust vertical placement */
+    left: 38%; /* center horizontally */ /* ensure it's above other elements */
+    width: 40px; /* adjust size */
+  }
+  .lock-effect-img {
+   
+    top: 30px;
+    left: 27px;
+    width:7px;
+
+  }
+  .pipe-container {
+    position: absolute;
+    top: 23px; /* adjust as needed */
+    left: 0;
+    overflow: hidden;
+    z-index: 3;
+  }
+  
+  .pipe-img {
+    position: relative;
+    left: -80px;
+    width: 120px;
+    transition: left 1.5s ease-in-out;
+    z-index: 3;
+  }
+  .pipe-move {
+    left: -25px;
+  }
+  .message-img {
+    top: 20px; /* start outside above */
+    right: 25px; /* start outside to the right */
+    width: 17px;
+  }
+  .thumbs-up-img {
+    bottom: 147px;
+    right: 28px;
+    width: 10px; /* Adjust as necessary */
+    opacity: 0;
+    animation: thumbsUpAnimation 1s forwards;
+  }
+  @keyframes flyInMessage {
+    0% {
+      opacity: 0;
+      transform: translate(-20px, 20px) scale(0.1); /* start off-screen and tiny */
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1); /* normal size and position */
+    }
+    
+  }
+}

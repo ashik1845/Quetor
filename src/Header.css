@@ -1,0 +1,58 @@
+
+
+.site-header {
+    position: sticky;
+  top: 0;
+  z-index: 999; /* ensures it stays above other content */
+    display: flex;
+    justify-content: center; /* horizontally centers nav */
+    align-items: center; /* optional, for consistent height */
+    /* optional */
+    padding: 0 20px;
+  }
+  
+
+/* Navigation */
+.main-navigation {
+    align-self: center;
+    display: flex;
+    width: 521px;
+    max-width: 100%;
+    align-items: stretch;
+    gap: 40px 45px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: #4d4d4d;
+    font-size: 18px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav-item span {
+    display: inline-block;
+    padding-bottom: 1px; /* spacing between text and underline */
+  }
+  
+  .nav-item-active span {
+    border-bottom: 2px solid #F1C232;
+  }
+  
+
+/* Hide hamburger by default */
+
+  /* Responsive styles */
+  @media (max-width: 680px) {
+    .nav-item{
+        font-size: 13px;
+    }
+    .main-navigation{
+        gap: 20px 20px;
+    }
+  }
+  
