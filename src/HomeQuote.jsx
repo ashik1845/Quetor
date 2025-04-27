@@ -2,7 +2,7 @@ import React from 'react';
 import './HomeQuote.css';
 import quoteLeft from './assets/quoteleft.png';
 import quoteRight from './assets/quote-right.png';
-import star from '/assets/star.png';
+import star from '../assets/star.png';
 
 const HomeQuote = () => {
   return (
