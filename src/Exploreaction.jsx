@@ -135,11 +135,12 @@ const ExploreAction = () => {
     let touchEndY = 0;
 
     const handleTouchStart = (e) => {
+      if (!isHijacking) return;
       touchStartY = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e) => {
-      if (!isHijacking) return;
+      if (!isHijacking || !scrollingLocked) return;
 
       touchEndY = e.touches[0].clientY;
       const delta = touchStartY - touchEndY;
@@ -157,9 +158,12 @@ const ExploreAction = () => {
         touchStartY = touchEndY; // Update start position for next move
         return newScroll;
       });
+
+      // Prevent the default scroll behavior while hijacking
+      e.preventDefault();
     };
 
-    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
