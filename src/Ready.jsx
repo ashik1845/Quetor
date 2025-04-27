@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './ready.css';
-import star from './assets/star.png';
+import './Ready.css';
+import star from './assets/Star.png';
 
 const Ready = () => {
   const sectionRef = useRef(null);
