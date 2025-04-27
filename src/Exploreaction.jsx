@@ -17,41 +17,31 @@ const ExploreAction = () => {
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const getResponsiveValues = (width) => {
-   
-  if (width <= 700) {
-      // Mobiles and small tablets
+    if (width <= 700) {
       return { maxYellowMove: 120, maxSmallMove: 110, hijackScrollDistance: 1600 };
-    }
-
-    else if (width <= 1000) {
-      // Tablets and small laptops
+    } else if (width <= 1000) {
       return { maxYellowMove: 140, maxSmallMove: 130, hijackScrollDistance: 2500 };
-    }
-    else if (width <= 1100) {
-      // Tablets and small laptops
-      return { maxYellowMove: 180, maxSmallMove: 160, hijackScrollDistance: 2600 };}
-    else if (width <= 1200) {
-      // Tablets and small laptops
-      return { maxYellowMove: 200, maxSmallMove: 180, hijackScrollDistance: 2800 };}
-       else {
-      // Desktop and big screens
+    } else if (width <= 1100) {
+      return { maxYellowMove: 180, maxSmallMove: 160, hijackScrollDistance: 2600 };
+    } else if (width <= 1200) {
+      return { maxYellowMove: 200, maxSmallMove: 180, hijackScrollDistance: 2800 };
+    } else {
       return { maxYellowMove: 215, maxSmallMove: 200, hijackScrollDistance: 3200 };
     }
   };
-  
-useEffect(() => {
-  const handleResize = () => {
-    setScreenWidth(window.innerWidth);
-  };
 
-  window.addEventListener('resize', handleResize);
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-}, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
 
-const { maxYellowMove, maxSmallMove, hijackScrollDistance } = getResponsiveValues(screenWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
+  const { maxYellowMove, maxSmallMove, hijackScrollDistance } = getResponsiveValues(screenWidth);
 
   const phases = [
     {
@@ -65,7 +55,6 @@ const { maxYellowMove, maxSmallMove, hijackScrollDistance } = getResponsiveValue
       description: "A dynamic dashboard crafted for schools, colleges, and institutes — your central workspace for assessments.",
       points: ["Institution-specific interface", "Configurable parameters", "Direct access to create papers", "Streamlined navigation"],
       smallText: "Unified\nControl\u00A0Hub",
-
     },
     {
       image: exploreactionimage3,
@@ -137,6 +126,45 @@ const { maxYellowMove, maxSmallMove, hijackScrollDistance } = getResponsiveValue
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isHijacking, scrollingLocked]);
+
+  // New touch event handling for mobile/touch devices
+  useEffect(() => {
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isHijacking) return;
+
+      touchEndY = e.touches[0].clientY;
+      const delta = touchStartY - touchEndY;
+
+      setInternalScroll(prev => {
+        let newScroll = prev + delta;
+        newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
+
+        if (newScroll === 0 || newScroll === hijackScrollDistance) {
+          setScrollingLocked(false);
+        } else {
+          setScrollingLocked(true);
+        }
+
+        touchStartY = touchEndY; // Update start position for next move
+        return newScroll;
+      });
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [isHijacking, scrollingLocked]);
 
