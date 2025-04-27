@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Aboutwhychoose.css";
-import aboutwhychoose1 from "./assets/aboutwhychoose1.png";
-import aboutwhychoose2 from "./assets/aboutwhychoose2.png";
-import aboutwhychoose3 from "./assets/aboutwhychoose3.png";
-import aboutwhychoose4 from "./assets/aboutwhychoose4.png";
-import aboutwhychoose5 from "./assets/aboutwhychoose5.png";
-import aboutwhychoose6 from "./assets/aboutwhychoose6.png";
+import aboutwhychoose1 from "./assets/Aboutwhychoose1.png";
+import aboutwhychoose2 from "./assets/Aboutwhychoose2.png";
+import aboutwhychoose3 from "./assets/Aboutwhychoose3.png";
+import aboutwhychoose4 from "./assets/Aboutwhychoose4.png";
+import aboutwhychoose5 from "./assets/Aboutwhychoose5.png";
+import aboutwhychoose6 from "./assets/Aboutwhychoose6.png";
 import bgCircle from "./assets/Ellipse.png";
 
 const data = [
