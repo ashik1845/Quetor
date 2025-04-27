@@ -79,7 +79,7 @@ const ExploreAction = () => {
 
       const rect = content.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
+      
       // Check if the entire content is fully within the viewport
       if (rect.top >= 0 && rect.bottom <= windowHeight) {
         setIsHijacking(true);
@@ -163,19 +163,12 @@ const ExploreAction = () => {
       e.preventDefault();
     };
 
-    const handleTouchEnd = () => {
-      // When the touch ends, allow the scroll to continue
-      setScrollingLocked(false);
-    };
-
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [isHijacking, scrollingLocked]);
 
