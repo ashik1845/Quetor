@@ -122,7 +122,6 @@ const ExploreAction = () => {
             setScrollingLocked(true);
           }
 
-          // After internal move, check visibility again
           if (!checkContentFullyVisible()) {
             setIsHijacking(false);
             setScrollingLocked(false);
@@ -158,7 +157,13 @@ const ExploreAction = () => {
         let newScroll = prev + delta;
         newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
 
-        // After internal move, check visibility again
+        // **Fix: Unlock scrolling if boundary reached**
+        if (newScroll === 0 || newScroll === hijackScrollDistance) {
+          setScrollingLocked(false);
+        } else {
+          setScrollingLocked(true);
+        }
+
         if (!checkContentFullyVisible()) {
           setIsHijacking(false);
           setScrollingLocked(false);
