@@ -157,14 +157,19 @@ const ExploreAction = () => {
         let newScroll = prev + delta;
         newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
 
-        // Fix: Unlock scrolling if boundary reached and animation is complete
-        if (newScroll === 0 || newScroll === hijackScrollDistance) {
+        // Lock scroll at boundaries
+        if (newScroll <= 0) {
+          newScroll = 0;
           setScrollingLocked(false);
+          setIsHijacking(false);
+        } else if (newScroll >= hijackScrollDistance) {
+          newScroll = hijackScrollDistance;
+          setScrollingLocked(false);
+          setIsHijacking(false);
         } else {
           setScrollingLocked(true);
         }
 
-        // **Release hijack when the animation completes or when scroll direction changes**
         if (!checkContentFullyVisible()) {
           setIsHijacking(false);
           setScrollingLocked(false);
