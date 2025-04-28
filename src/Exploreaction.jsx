@@ -14,6 +14,7 @@ const ExploreAction = () => {
   const [isHijacking, setIsHijacking] = useState(false);
   const [scrollingLocked, setScrollingLocked] = useState(false);
   const [currentPhase, setCurrentPhase] = useState(0);
+  const [animationCompleted, setAnimationCompleted] = useState(false);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -196,6 +197,12 @@ const ExploreAction = () => {
       setCurrentPhase(2);
     } else {
       setCurrentPhase(3);
+    }
+
+    // Lock hijacking and set animation completed state once scroll hits the max
+    if (internalProgress === 1) {
+      setAnimationCompleted(true);
+      setIsHijacking(false);  // Release hijacking when animation completes
     }
   }, [internalProgress]);
 
