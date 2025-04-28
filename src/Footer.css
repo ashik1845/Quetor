@@ -6,8 +6,9 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   overflow-x: hidden;
-  z-index: 1000;
-  overflow: hidden;
+  z-index: 50000;
+  position: relative; /* Ensure footer stays above everything else */
+  clip-path: inset(0 0 0 0); /* Prevent anything from showing through */
 }
 
 body {
@@ -134,6 +135,7 @@ body {
   align-items: center;
   font-size: 0.8rem;
   text-align: center;
+  gap: 50px;
 }
 
 .footer-bottom .terms {
@@ -273,5 +275,20 @@ body {
 
   .vertical-line {
     display: none;
+  }
+}
+@media (max-width: 729px) {
+  .footer-bottom .terms {
+    margin-top: 15px; /* Creates a gap above this element */
+  }
+}
+@media (max-width: 729px) {
+  .footer-bottom .terms {
+    margin-top: 15px; /* Creates a gap above this element */
+    font-size: 12px; /* Reduce font size */
+  }
+
+  .footer-bottom .copyright {
+    font-size: 12px; /* Reduce font size */
   }
 }

@@ -1,4 +1,4 @@
-.getin-section {
+.getoutgetin-section {
   padding: 60px 20px;
   background-color: #FEFAEF;
   position: relative;
@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.getin-section::before {
+.getoutgetin-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -20,7 +20,7 @@
   z-index: -1;
 }
 
-.getin-title {
+.getoutgetin-title {
   font-family: 'Nunito', sans-serif;
   font-size: 40px;
   font-weight: bold;
@@ -28,19 +28,19 @@
   color: #1E1E1E;
 }
 
-.getin-title .highlight {
+.getoutgetin-title .getouthighlight {
   color: #FFC365
 }
 
-.getin-description {
+.getoutgetin-description {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   max-width: 600px;
   margin: 0 auto 50px;
-  color:#1E1E1E;
+  color: #1E1E1E;
 }
 
-.getin-container {
+.getoutgetin-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -50,75 +50,73 @@
   text-align: left;
 }
 
-.getin-image {
+.getoutgetin-image {
   width: 350px;
   display: flex;
   justify-content: center;
 }
 
-.getin-image img {
+.getoutgetin-image img {
   width: 100%;
   max-width: 100%;
 }
 
-.getin-content {
+.getoutgetin-content {
   font-family: 'Montserrat', sans-serif;
   width: 300px;
 }
 
 /* ===================== CONTACT BLOCK ===================== */
 
-.contact-block {
+.getoutcontact-block {
   display: flex;
-  align-items: flex-start;     /* Align icon and text at the top */
-  gap: 15px;                   /* Space between icon and text */
+  align-items: flex-start;
+  gap: 15px;
   margin-bottom: 30px;
-  flex-wrap: nowrap;           /* Ensure icon and text stay side-by-side */
+  flex-wrap: nowrap;
 }
 
-.contact-icon {
-  flex-shrink: 0;              /* Prevent icon from shrinking */
+.getoutcontact-icon {
+  flex-shrink: 0;
   display: flex;
   align-items: flex-start;
   margin-top: 5px;
 }
 
-.contact-icon img {
+.getoutcontact-icon img {
   width: 40px;
   height: 40px;
 }
 
-.contact-text {
+.getoutcontact-text {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: auto;
 }
 
-.contact-title {
+.getoutcontact-title {
   font-weight: bold;
   font-size: 18px;
   margin: 0;
   color: #1E1E1E;
 }
 
-.contact-description {
+.getoutcontact-description {
   font-size: 16px;
-  color:#1E1E1E;
+  color: #1E1E1E;
   margin-top: 5px;
   white-space: normal;
   word-wrap: break-word;
   line-height: 1.5;
   width: 100%;
   word-break: break-word;
-
   font-family: 'Montserrat', sans-serif;
-
 }
 
 /* ===================== CHAT BUTTON ===================== */
 
-.chat-button {
+.getoutchat-button {
   background: radial-gradient(circle, rgba(255, 217, 113, 1) 0%, rgba(186, 137, 4, 1) 100%);
   border: none;
   padding: 12px 24px;
@@ -131,38 +129,50 @@
   margin-top: 15px;
   margin-left: 60px;
   font-family: 'Montserrat', sans-serif;
-
 }
+
 @media (max-width: 768px) {
-  .your-class {
-    padding-top: 20px; /* reduced padding for tablets and smaller screens */
+  .getoutyour-class {
+    padding-top: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .your-class {
-    padding-top: 10px; /* even smaller padding for mobile */
+  .getoutyour-class {
+    padding-top: 10px;
   }
 }
 
 @media (max-width: 980px) {
-  .getin-container {
-    gap: 120px; /* Adjust the gap to be smaller */
+  .getoutgetin-container {
+    gap: 120px;
   }
 }
+
 @media (max-width: 768px) {
-  .getin-image {
-    width: 250px; /* Reduce the image width */
+  .getoutgetin-image {
+    width: 250px;
   }
 
-  .getin-image img {
+  .getoutgetin-image img {
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .getin-image {
-    width: 180px; /* Further reduce the image for smaller screens */
+  .getoutgetin-image {
+    width: 180px;
   }
 }
 
+@media (max-width: 768px) {
+  .getoutgetin-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .getoutchat-button {
+    display: block;
+    margin: auto;
+  }
+}

@@ -155,17 +155,18 @@ const ExploreAction = () => {
 
       setInternalScroll(prev => {
         let newScroll = prev + delta;
-        newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
 
-        // Lock scroll at boundaries
-        if (newScroll <= 0) {
-          newScroll = 0;
-          setScrollingLocked(false);
-          setIsHijacking(false);
-        } else if (newScroll >= hijackScrollDistance) {
+        // 🔥 FIX: Once we reach hijackScrollDistance, lock it, don't allow back scroll
+        if (prev >= hijackScrollDistance) {
           newScroll = hijackScrollDistance;
           setScrollingLocked(false);
-          setIsHijacking(false);
+          return newScroll;
+        }
+
+        newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
+
+        if (newScroll === 0 || newScroll === hijackScrollDistance) {
+          setScrollingLocked(false);
         } else {
           setScrollingLocked(true);
         }

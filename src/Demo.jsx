@@ -11,33 +11,34 @@ const Demo = () => {
   const [rotation, setRotation] = useState(135); // Ensure red side starts on the left
   const [donutTop, setDonutTop] = useState(200);
   const [scrollY, setScrollY] = useState(window.scrollY);
+  
+useEffect(() => {
+  const handleScroll = () => {
+    requestAnimationFrame(() => {
+      const newScrollY = window.scrollY;
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const sectionBottom = sectionTop + sectionHeight;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      requestAnimationFrame(() => {
-        const newScrollY = window.scrollY;
-        const sectionTop = sectionRef.current.offsetTop;
-        const sectionHeight = sectionRef.current.offsetHeight;
-        const sectionBottom = sectionTop + sectionHeight;
+      if (newScrollY < sectionTop) {
+        setDonutTop(200);
+        setRotation(135);
+      } else if (newScrollY >= sectionTop && newScrollY <= sectionBottom) {
+        setRotation(135 + (newScrollY - sectionTop) * 0.6); // Rotate smoothly
+        setDonutTop(200 + (newScrollY - sectionTop) * 0.9); // Moves down further for full visibility
+      } else {
+        setDonutTop(sectionBottom + (newScrollY - sectionBottom) * 1.2); // Ensures no delay for last section
+        setRotation(rotation + (newScrollY - sectionBottom) * 0.6); // Keep rotation aligned
+      }
 
-        if (newScrollY < sectionTop) {
-          setDonutTop(200);
-          setRotation(135);
-        } else if (newScrollY >= sectionTop && newScrollY <= sectionBottom) {
-          setRotation(135 + (newScrollY - sectionTop) * 0.5); // Rotate smoothly
-          setDonutTop(200 + (newScrollY - sectionTop) * 0.8); // Moves down fluidly
-        } else {
-          setDonutTop(sectionBottom + (newScrollY - sectionBottom) * 0.8);
-          setRotation(rotation + (newScrollY - sectionBottom) * 0.4);
-        }
+      setScrollY(newScrollY);
+    });
+  };
 
-        setScrollY(newScrollY);
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [rotation]);
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [rotation]);
+  
 
   return (
     <div className="types-services-section" ref={sectionRef}>
