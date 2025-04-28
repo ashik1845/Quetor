@@ -16,6 +16,7 @@ const ExploreAction = () => {
   const [currentPhase, setCurrentPhase] = useState(0);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
   const getResponsiveValues = (width) => {
     if (width <= 700) {
       return { maxYellowMove: 120, maxSmallMove: 110, hijackScrollDistance: 1600 };
@@ -70,22 +71,26 @@ const ExploreAction = () => {
     },
   ];
 
+  const checkContentFullyVisible = () => {
+    const section = sectionRef.current;
+    const content = section?.querySelector('.explore-action-content');
+
+    if (!section || !content) return false;
+
+    const rect = content.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    return rect.top >= 0 && rect.bottom <= windowHeight;
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      const section = sectionRef.current;
-      const content = section?.querySelector('.explore-action-content');
-
-      if (!section || !content) return;
-
-      const rect = content.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Check if the entire content is fully within the viewport
-      if (rect.top >= 0 && rect.bottom <= windowHeight) {
+      if (checkContentFullyVisible()) {
         setIsHijacking(true);
         setScrollingLocked(true);
       } else {
         setIsHijacking(false);
+        setScrollingLocked(false);
       }
     };
 
@@ -117,6 +122,12 @@ const ExploreAction = () => {
             setScrollingLocked(true);
           }
 
+          // After internal move, check visibility again
+          if (!checkContentFullyVisible()) {
+            setIsHijacking(false);
+            setScrollingLocked(false);
+          }
+
           return newScroll;
         });
       }
@@ -129,10 +140,8 @@ const ExploreAction = () => {
     };
   }, [isHijacking, scrollingLocked]);
 
-  // New touch event handling for mobile/touch devices
   useEffect(() => {
     let touchStartY = 0;
-    let touchEndY = 0;
 
     const handleTouchStart = (e) => {
       if (!isHijacking) return;
@@ -142,24 +151,23 @@ const ExploreAction = () => {
     const handleTouchMove = (e) => {
       if (!isHijacking || !scrollingLocked) return;
 
-      touchEndY = e.touches[0].clientY;
+      const touchEndY = e.touches[0].clientY;
       const delta = touchStartY - touchEndY;
 
       setInternalScroll(prev => {
         let newScroll = prev + delta;
         newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
 
-        if (newScroll === 0 || newScroll === hijackScrollDistance) {
+        // After internal move, check visibility again
+        if (!checkContentFullyVisible()) {
+          setIsHijacking(false);
           setScrollingLocked(false);
-        } else {
-          setScrollingLocked(true);
         }
 
-        touchStartY = touchEndY; // Update start position for next move
         return newScroll;
       });
 
-      // Prevent the default scroll behavior while hijacking
+      touchStartY = touchEndY;
       e.preventDefault();
     };
 
@@ -193,18 +201,9 @@ const ExploreAction = () => {
     <section
       ref={sectionRef}
       className="explore-action-section"
-      style={{
-        position: 'relative',
-        // slightly more height to support smooth scroll
-      }}
+      style={{ position: 'relative' }}
     >
-      <div
-        style={{
-          position: 'sticky',
-          top: 0,
-          overflow: 'hidden',
-        }}
-      >
+      <div style={{ position: 'sticky', top: 0, overflow: 'hidden' }}>
         <div className="explore-action-header">
           <h2 className="explore-action-title">
             See <span className="explore-action-highlight-quetor">Quetor</span> in Action
@@ -233,7 +232,7 @@ const ExploreAction = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="explore-action-right">
             <div className="explore-action-image-wrapper">
               <img
