@@ -57,7 +57,13 @@ const ServiceGetIn = () => {
             </div>
           </div>
 
-          <button className="getoutchat-button">Start Chat</button>
+          <button
+  className="getoutchat-button"
+  onClick={() => window.open('https://wa.me/917550254933', '_blank')}
+>
+  Start Chat
+</button>
+
         </div>
       </div>
     </section>

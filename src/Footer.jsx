@@ -2,9 +2,9 @@ import React from 'react';
 import './Footer.css';
 
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { BiSolidMessageRounded } from "react-icons/bi";
 import { TbBrandWhatsappFilled } from "react-icons/tb";
 import { AiFillInstagram } from "react-icons/ai";
+import { FaLinkedin } from "react-icons/fa";
 import logo from './assets/Logo.png';
 
 const Footer = () => {
@@ -15,11 +15,11 @@ const Footer = () => {
         <div className="footer-section quick-links">
           <h4>Quick Links</h4>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Explore</li>
-            <li>Support</li>
+            <li onClick={() => window.location.href = '/'}>Home</li>
+            <li onClick={() => window.location.href = '/About'}>About</li>
+            <li onClick={() => window.location.href = '/Services'}>Services</li>
+            <li onClick={() => window.location.href = '/Explore'}>Explore</li>
+            <li onClick={() => window.location.href = '/Support'}>Support</li>
           </ul>
         </div>
 
@@ -38,10 +38,31 @@ const Footer = () => {
         <div className="footer-section reach-us">
           <h4>Reach Us</h4>
           <ul>
-            <li><FaPhoneAlt /> +91 75502 54933</li>
-            <li><FaEnvelope /> Quetor@gmail.com</li>
-            <li><BiSolidMessageRounded /> Live Chat</li>
-            <li><TbBrandWhatsappFilled /> <AiFillInstagram /></li>
+          <li>
+  <a href="tel:+917550254933">
+    <FaPhoneAlt /> +91 75502 54933
+  </a>
+</li>
+<li>
+  <a href="mailto:mitbots01@gmail.com">
+    <FaEnvelope /> Quetor@gmail.com
+  </a>
+</li>
+
+<li>
+  <a href="https://www.linkedin.com/company/mitbots-official/" target="_blank" rel="noopener noreferrer">
+    <FaLinkedin /> LinkedIn
+  </a>
+</li>
+
+            <li>
+  <a href="https://wa.me/917550254933" target="_blank" rel="noopener noreferrer">
+    <TbBrandWhatsappFilled />
+  </a>
+  <a href="https://www.instagram.com/mitbots_official" target="_blank" rel="noopener noreferrer">
+    <AiFillInstagram />
+  </a>
+  </li>
           </ul>
         </div>
       </div>

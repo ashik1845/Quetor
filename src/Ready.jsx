@@ -37,8 +37,8 @@ const Ready = () => {
         Join us to use Quetor to create perfect question papers in minutes.
       </p>
       <div className="ready-buttons">
-        <button className="ready-button">Book A Demo</button>
-        <button className="ready-button">Contact Us</button>
+        <button className="ready-button" onClick={() => window.location.href = '/Explore'}>Book A Demo</button>
+        <button className="ready-button" onClick={() => window.location.href = '/Support'}>Contact Us</button>
       </div>
     </div>
   );

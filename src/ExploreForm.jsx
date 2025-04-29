@@ -92,7 +92,8 @@ const ExploreForm = () => {
           <div className="exploreform-circle">
             <span className="exploreform-circle-text">Live System Demo</span>
             <div className="exploreform-tooltip">
-  Our team will get to know your institution and specific needs
+            See the Quetor platform in action with real-world
+            examples
 </div>
 
           </div>
@@ -102,7 +103,7 @@ const ExploreForm = () => {
             <span className="exploreform-circle-text">Q&A
             Session</span>
             <div className="exploreform-tooltip">
-  Our team will get to know your institution and specific needs
+  Get all your questions answered by our product experts
 </div>
 
           </div>
@@ -111,7 +112,8 @@ const ExploreForm = () => {
           <div className="exploreform-circle">
             <span className="exploreform-circle-text">Custom Proposal</span>
             <div className="exploreform-tooltip">
-  Our team will get to know your institution and specific needs
+            Receive a tailored solution and pricing plan for your
+            institution
 </div>
 
           </div>
