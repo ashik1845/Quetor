@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { TbBrandWhatsappFilled } from "react-icons/tb";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
-import logo from './assets/Footerlogo.png';
+import logo from './assets/Footerlogoo.png';
 
 const Footer = () => {
   return (
