@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import vector from "./assets/Vector.png";
-import vector1 from "./assets/subtract.png";
+import vector1 from "./assets/Subtract.png";
 import vector2 from "./assets/mail.png";
 import vector3 from "./assets/chat.png";
 import vector4 from "./assets/Subtracts.png";
