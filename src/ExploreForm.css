@@ -387,5 +387,15 @@
   .exploreform-circle-text {
     font-size: 10px;
   }
+  
+.exploreform-image-item:nth-child(2) .exploreform-tooltip {
+  left: auto;
+  right: 0;
+
+}
+.exploreform-image-item:nth-child(2) .exploreform-tooltip{
+  left: auto;
+  right: 20px;
+}
 }
 

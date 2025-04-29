@@ -20,7 +20,7 @@ const Header = () => {
   <NavLink to="/explore" className={({ isActive }) => `nav-item ${isActive ? 'nav-item-active' : ''}`}>
     <span>Explore</span>
   </NavLink>
-  <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'nav-item-active' : ''}`}>
+  <NavLink to="/support" className={({ isActive }) => `nav-item ${isActive ? 'nav-item-active' : ''}`}>
     <span>Support</span>
   </NavLink>
 </nav>

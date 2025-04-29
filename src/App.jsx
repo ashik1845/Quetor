@@ -7,6 +7,7 @@ import Ready from './Ready';
 import Footer from './Footer';
 import Services from './Services';
 import Explore from './Explore';
+import Support from './Support';
 const App = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const App = () => {
         
         <Route path="/services" element={<Services />} />
         <Route path="/explore" element={<Explore/>} />
+        <Route path="/support" element={<Support/>} />
       </Routes>
     </>
   );
