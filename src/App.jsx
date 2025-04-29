@@ -8,14 +8,15 @@ import Footer from './Footer';
 import Services from './Services';
 import Explore from './Explore';
 import Support from './Support';
+import ScrollToTop from './ScrollToTop';
 const App = () => {
   return (
     <>
+    <ScrollToTop />
       <Routes>
         <Route path="/" element={
           <>
             <HomeHeader />
-            
             <HomeQuote />
             <Ready/>
             <Footer/>
