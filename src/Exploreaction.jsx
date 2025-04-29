@@ -141,56 +141,65 @@ const ExploreAction = () => {
 
   useEffect(() => {
     let touchStartY = 0;
-
+    let active = false; // 🔥 control whether hijack is active
+  
     const handleTouchStart = (e) => {
       if (!isHijacking) return;
       touchStartY = e.touches[0].clientY;
+      active = scrollingLocked; // Start hijack only if currently locked
     };
-
+  
     const handleTouchMove = (e) => {
-      if (!isHijacking || !scrollingLocked) return;
-
+      if (!isHijacking || !active) return;
+    
       const touchEndY = e.touches[0].clientY;
       const delta = touchStartY - touchEndY;
-
+    
       setInternalScroll(prev => {
         let newScroll = prev + delta;
-
-        // 🔥 FIX: Once we reach hijackScrollDistance, lock it, don't allow back scroll
-        if (prev >= hijackScrollDistance) {
-          newScroll = hijackScrollDistance;
-          setScrollingLocked(false);
-          return newScroll;
-        }
-
         newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
-
-        if (newScroll === 0 || newScroll === hijackScrollDistance) {
-          setScrollingLocked(false);
-        } else {
-          setScrollingLocked(true);
-        }
-
-        if (!checkContentFullyVisible()) {
+    
+        const atTop = newScroll === 0;
+        const atBottom = newScroll === hijackScrollDistance;
+    
+        if (atTop || atBottom) {
           setIsHijacking(false);
           setScrollingLocked(false);
+          active = false;
+    
+          const section = sectionRef.current;
+          if (section) {
+            const sectionTop = section.offsetTop;
+            window.scrollTo({
+              top: atTop
+                ? sectionTop - section.offsetHeight // a bit above so user can scroll again
+                : sectionTop + section.offsetHeight + 10,
+              behavior: 'smooth',
+            });
+          }
+    
+          return newScroll;
         }
-
+    
         return newScroll;
       });
-
+    
+      if (active) {
+        e.preventDefault(); // block only while hijacking
+      }
+    
       touchStartY = touchEndY;
-      e.preventDefault();
     };
-
+    
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
-
+  
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [isHijacking, scrollingLocked]);
+  
 
   const internalProgress = internalScroll / hijackScrollDistance;
 
