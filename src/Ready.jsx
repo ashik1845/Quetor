@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Ready.css';
 import star from './assets/Star.png';
 
 const Ready = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const [inView, setInView] = useState(false);
 
@@ -37,8 +39,12 @@ const Ready = () => {
         Join us to use Quetor to create perfect question papers in minutes.
       </p>
       <div className="ready-buttons">
-        <button className="ready-button" onClick={() => window.location.href = '/explore'}>Book A Demo</button>
-        <button className="ready-button" onClick={() => window.location.href = '/support'}>Contact Us</button>
+      <button className="ready-button" onClick={() => navigate('/explore')}>
+        Book A Demo
+      </button>
+      <button className="ready-button" onClick={() => navigate('/support')}>
+        Contact Us
+      </button>
       </div>
     </div>
   );
