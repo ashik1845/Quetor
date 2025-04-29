@@ -6,8 +6,10 @@ import { TbBrandWhatsappFilled } from "react-icons/tb";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
 import logo from './assets/Footerlogoo.png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="footer">
       <div className="footer-main">
@@ -15,12 +17,12 @@ const Footer = () => {
         <div className="footer-section quick-links">
           <h4>Quick Links</h4>
           <ul>
-            <li onClick={() => window.location.href = '/'}>Home</li>
-            <li onClick={() => window.location.href = '/about'}>About</li>
-            <li onClick={() => window.location.href = '/services'}>Services</li>
-            <li onClick={() => window.location.href = '/explore'}>Explore</li>
-            <li onClick={() => window.location.href = '/support'}>Support</li>
-          </ul>
+      <li onClick={() => navigate('/')}>Home</li>
+      <li onClick={() => navigate('/about')}>About</li>
+      <li onClick={() => navigate('/services')}>Services</li>
+      <li onClick={() => navigate('/explore')}>Explore</li>
+      <li onClick={() => navigate('/support')}>Support</li>
+    </ul>
         </div>
 
         <div className="vertical-line" />

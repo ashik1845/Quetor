@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './HomeHeader.css';// adjust path based on your file structure
 import Header from './Header';
 import Quetorhead from './Quetorhead';
-
+import { useNavigate } from 'react-router-dom';
 
 const HomeHeader = () => {
   const [frontCard, setFrontCard] = useState(1);
+  const navigate = useNavigate();
 
   const handleCardClick = (index) => {
     setFrontCard(index);
@@ -34,17 +35,24 @@ const HomeHeader = () => {
                 </h1>
 
                 <div className="home-header-cta-container">
-                  <button className="home-header-cta-button home-header-primary-button" onClick={() => window.location.href = '/about'}>
-                    <span>Get Started</span>
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/d45a03d1a544a04d8a4b6dad0e2f5d93f0c1168c?placeholderIfAbsent=true&apiKey=bf7362d068e944f1b86d90c093e84367"
-                      className="home-header-button-icon"
-                      alt="Arrow icon"
-                    />
-                  </button>
-                  <button className="home-header-cta-button home-header-secondary-button" onClick={() => window.location.href = '/explore'}>
-                    Learn More
-                  </button>
+                <button
+        className="home-header-cta-button home-header-primary-button"
+        onClick={() => navigate('/about')}
+      >
+        <span>Get Started</span>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d45a03d1a544a04d8a4b6dad0e2f5d93f0c1168c?placeholderIfAbsent=true&apiKey=bf7362d068e944f1b86d90c093e84367"
+          className="home-header-button-icon"
+          alt="Arrow icon"
+        />
+      </button>
+
+      <button
+        className="home-header-cta-button home-header-secondary-button"
+        onClick={() => navigate('/explore')}
+      >
+        Learn More
+      </button>
                 </div>
 
                 <p className="home-header-description-text">
