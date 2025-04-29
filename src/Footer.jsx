@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { TbBrandWhatsappFilled } from "react-icons/tb";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
-import logo from './assets/Logo.png';
+import logo from './assets/Footerlogo.png';
 
 const Footer = () => {
   return (
@@ -16,10 +16,10 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li onClick={() => window.location.href = '/'}>Home</li>
-            <li onClick={() => window.location.href = '/About'}>About</li>
-            <li onClick={() => window.location.href = '/Services'}>Services</li>
-            <li onClick={() => window.location.href = '/Explore'}>Explore</li>
-            <li onClick={() => window.location.href = '/Support'}>Support</li>
+            <li onClick={() => window.location.href = '/about'}>About</li>
+            <li onClick={() => window.location.href = '/services'}>Services</li>
+            <li onClick={() => window.location.href = '/explore'}>Explore</li>
+            <li onClick={() => window.location.href = '/support'}>Support</li>
           </ul>
         </div>
 

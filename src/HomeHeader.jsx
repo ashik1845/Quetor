@@ -34,7 +34,7 @@ const HomeHeader = () => {
                 </h1>
 
                 <div className="home-header-cta-container">
-                  <button className="home-header-cta-button home-header-primary-button" onClick={() => window.location.href = '/About'}>
+                  <button className="home-header-cta-button home-header-primary-button" onClick={() => window.location.href = '/about'}>
                     <span>Get Started</span>
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/d45a03d1a544a04d8a4b6dad0e2f5d93f0c1168c?placeholderIfAbsent=true&apiKey=bf7362d068e944f1b86d90c093e84367"
@@ -42,7 +42,7 @@ const HomeHeader = () => {
                       alt="Arrow icon"
                     />
                   </button>
-                  <button className="home-header-cta-button home-header-secondary-button" onClick={() => window.location.href = '/Explore'}>
+                  <button className="home-header-cta-button home-header-secondary-button" onClick={() => window.location.href = '/explore'}>
                     Learn More
                   </button>
                 </div>

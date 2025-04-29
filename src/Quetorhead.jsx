@@ -9,7 +9,7 @@ const Quetorhead = () => {
       
       <div className="header-center-content">
         <p>One Click, Big Change!</p>
-        <button className='header-home-top-button' onClick={() => window.location.href = '/Explore'}>Book A Demo</button>
+        <button className='header-home-top-button' onClick={() => window.location.href = '/explore'}>Book A Demo</button>
       </div>
     </div>
   )
