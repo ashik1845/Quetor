@@ -14,32 +14,22 @@ const ExploreAction = () => {
   const [isHijacking, setIsHijacking] = useState(false);
   const [scrollingLocked, setScrollingLocked] = useState(false);
   const [currentPhase, setCurrentPhase] = useState(0);
-
+  const [prevPhase, setPrevPhase] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const getResponsiveValues = (width) => {
-    if (width <= 700) {
-      return { maxYellowMove: 120, maxSmallMove: 110, hijackScrollDistance: 1600 };
-    } else if (width <= 1000) {
-      return { maxYellowMove: 140, maxSmallMove: 130, hijackScrollDistance: 2500 };
-    } else if (width <= 1100) {
-      return { maxYellowMove: 180, maxSmallMove: 160, hijackScrollDistance: 2600 };
-    } else if (width <= 1200) {
-      return { maxYellowMove: 200, maxSmallMove: 180, hijackScrollDistance: 2800 };
-    } else {
-      return { maxYellowMove: 215, maxSmallMove: 200, hijackScrollDistance: 3200 };
-    }
+    if (width <= 700) return { maxYellowMove: 120, maxSmallMove: 110, hijackScrollDistance: 1600 };
+    if (width <= 1000) return { maxYellowMove: 140, maxSmallMove: 130, hijackScrollDistance: 2500 };
+    if (width <= 1100) return { maxYellowMove: 180, maxSmallMove: 160, hijackScrollDistance: 2600 };
+    if (width <= 1200) return { maxYellowMove: 200, maxSmallMove: 180, hijackScrollDistance: 2800 };
+    return { maxYellowMove: 215, maxSmallMove: 200, hijackScrollDistance: 3200 };
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
+    const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const { maxYellowMove, maxSmallMove, hijackScrollDistance } = getResponsiveValues(screenWidth);
@@ -74,29 +64,19 @@ const ExploreAction = () => {
   const checkContentFullyVisible = () => {
     const section = sectionRef.current;
     const content = section?.querySelector('.explore-action-content');
-
     if (!section || !content) return false;
-
     const rect = content.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    return rect.top >= 0 && rect.bottom <= windowHeight;
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (checkContentFullyVisible()) {
-        setIsHijacking(true);
-        setScrollingLocked(true);
-      } else {
-        setIsHijacking(false);
-        setScrollingLocked(false);
-      }
+      const isVisible = checkContentFullyVisible();
+      setIsHijacking(isVisible);
+      setScrollingLocked(isVisible);
     };
-
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
@@ -105,113 +85,97 @@ const ExploreAction = () => {
 
   useEffect(() => {
     const handleWheel = (e) => {
-      if (!isHijacking) return;
-
-      if (scrollingLocked) {
-        e.preventDefault();
-
-        const delta = e.deltaY;
-
-        setInternalScroll(prev => {
-          let newScroll = prev + delta;
-          newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
-
-          if (newScroll === 0 || newScroll === hijackScrollDistance) {
-            setScrollingLocked(false);
-          } else {
-            setScrollingLocked(true);
-          }
-
-          if (!checkContentFullyVisible()) {
-            setIsHijacking(false);
-            setScrollingLocked(false);
-          }
-
-          return newScroll;
-        });
-      }
+      if (!isHijacking || !scrollingLocked) return;
+      e.preventDefault();
+      const delta = e.deltaY;
+      setInternalScroll(prev => {
+        let newScroll = Math.min(Math.max(prev + delta, 0), hijackScrollDistance);
+        if (newScroll === 0 || newScroll === hijackScrollDistance) setScrollingLocked(false);
+        if (!checkContentFullyVisible()) {
+          setIsHijacking(false);
+          setScrollingLocked(false);
+        }
+        return newScroll;
+      });
     };
-
     window.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
+    return () => window.removeEventListener('wheel', handleWheel);
   }, [isHijacking, scrollingLocked]);
 
   useEffect(() => {
     let touchStartY = 0;
-    let active = false; // 🔥 control whether hijack is active
-  
+    let active = false;
+
     const handleTouchStart = (e) => {
       if (!isHijacking) return;
       touchStartY = e.touches[0].clientY;
-      active = scrollingLocked; // Start hijack only if currently locked
+      active = scrollingLocked;
     };
-  
+
     const handleTouchMove = (e) => {
       if (!isHijacking || !active) return;
-    
-      const touchEndY = e.touches[0].clientY;
-      const delta = touchStartY - touchEndY;
-    
+      const delta = touchStartY - e.touches[0].clientY;
+
+      if (!checkContentFullyVisible()) {
+        setIsHijacking(false);
+        setScrollingLocked(false);
+        active = false;
+        return;
+      }
+
       setInternalScroll(prev => {
-        let newScroll = prev + delta;
-        newScroll = Math.min(Math.max(newScroll, 0), hijackScrollDistance);
-    
+        let newScroll = Math.min(Math.max(prev + delta, 0), hijackScrollDistance);
         const atTop = newScroll === 0;
         const atBottom = newScroll === hijackScrollDistance;
-    
+
         if (atTop || atBottom) {
           setIsHijacking(false);
           setScrollingLocked(false);
           active = false;
-    
-          const section = sectionRef.current;
-          if (section) {
-            const sectionTop = section.offsetTop;
-            window.scrollTo({
-              top: atTop
-                ? sectionTop - section.offsetHeight // a bit above so user can scroll again
-                : sectionTop + section.offsetHeight + 10,
-              behavior: 'smooth',
-            });
-          }
-    
-          return newScroll;
+          setTimeout(() => {
+            const section = sectionRef.current;
+            if (section) {
+              window.scrollTo({
+                top: atTop
+                  ? section.offsetTop - section.offsetHeight
+                  : section.offsetTop + section.offsetHeight + 10,
+                behavior: 'smooth',
+              });
+            }
+          }, 300);
         }
-    
+
+        touchStartY = e.touches[0].clientY;
         return newScroll;
       });
-    
-      if (active) {
-        e.preventDefault(); // block only while hijacking
-      }
-    
-      touchStartY = touchEndY;
+
+      if (active) e.preventDefault();
     };
-    
+
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
-  
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [isHijacking, scrollingLocked]);
-  
 
   const internalProgress = internalScroll / hijackScrollDistance;
 
   useEffect(() => {
-    if (internalProgress < 0.3) {
-      setCurrentPhase(0);
-    } else if (internalProgress >= 0.3 && internalProgress < 0.6) {
-      setCurrentPhase(1);
-    } else if (internalProgress >= 0.6 && internalProgress < 0.9) {
-      setCurrentPhase(2);
-    } else {
-      setCurrentPhase(3);
+    let newPhase = 0;
+    if (internalProgress < 0.3) newPhase = 0;
+    else if (internalProgress < 0.6) newPhase = 1;
+    else if (internalProgress < 0.9) newPhase = 2;
+    else newPhase = 3;
+
+    if (newPhase !== currentPhase) {
+      setPrevPhase(currentPhase);
+      setTransitioning(true);
+      setTimeout(() => {
+        setCurrentPhase(newPhase);
+        setTransitioning(false);
+      }, 400);
     }
   }, [internalProgress]);
 
@@ -219,11 +183,7 @@ const ExploreAction = () => {
   const smallMove = internalProgress * maxSmallMove;
 
   return (
-    <section
-      ref={sectionRef}
-      className="explore-action-section"
-      style={{ position: 'relative' }}
-    >
+    <section ref={sectionRef} className="explore-action-section">
       <div style={{ position: 'sticky', top: 0, overflow: 'hidden' }}>
         <div className="explore-action-header">
           <h2 className="explore-action-title">
@@ -236,13 +196,13 @@ const ExploreAction = () => {
 
         <div className="explore-action-content">
           <div className="explore-action-left">
-            <div className="explore-action-description-wrapper">
+            <div className={`explore-action-description-wrapper ${transitioning ? 'fade-out' : 'fade-in'}`}>
               <p className="explore-action-description">
                 {phases[currentPhase].description}
               </p>
             </div>
 
-            <div className="explore-action-points">
+            <div className={`explore-action-points ${transitioning ? 'fade-out' : 'fade-in'}`}>
               <div className="explore-action-points-wrapper">
                 {phases[currentPhase].points.map((point, index) => (
                   <div className="explore-action-point" key={index}>
@@ -260,32 +220,38 @@ const ExploreAction = () => {
                 src={exploreactionyellow}
                 alt="Explore Action Yellow"
                 className="explore-action-yellow"
-                style={{
-                  transform: `translateY(${yellowMove}px)`,
-                }}
+                style={{ transform: `translateY(${yellowMove}px)` }}
               />
               <img
                 src={exploreactionbox}
                 alt="Explore Action Box"
                 className="explore-action-image"
               />
-              <img
-                src={phases[currentPhase].image}
-                alt="Explore Action Dynamic"
-                className="explore-action-image1"
-              />
+              <div className="scroll-image-container">
+                <div
+                  className="scroll-image-inner"
+                  style={{ transform: `translateY(-${currentPhase * 25}%)` }}
+                >
+                  {phases.map((phase, i) => (
+                    <img
+                      key={i}
+                      src={phase.image}
+                      alt={`Explore Action Phase ${i + 1}`}
+                      className="scroll-image"
+                    />
+                  ))}
+                </div>
+              </div>
               <div
                 className="explore-action-small-wrapper"
-                style={{
-                  transform: `translateY(${smallMove}px)`,
-                }}
+                style={{ transform: `translateY(${smallMove}px)` }}
               >
                 <img
                   src={exploreactionsmall}
                   alt="Explore Action Small"
                   className="explore-action-small"
                 />
-                <span className="seamless-entry-text">
+                <span className={`seamless-entry-text ${transitioning ? 'fade-out' : 'fade-in'}`}>
                   {phases[currentPhase].smallText}
                 </span>
               </div>

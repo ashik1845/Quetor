@@ -33,6 +33,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    
 }
 
 .explore-action-left {
@@ -115,15 +116,33 @@
     display: block;
 }
 
-.explore-action-image1 {
+.scroll-image-container {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 90%;
+    height: auto;
+    max-height: 90%;
+    overflow: hidden;
     border: 2px solid #7C1421;
     border-radius: 20px;
-    transition: opacity 0.6s ease;
-}
+  }
+  
+  .scroll-image-inner {
+    
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.6s ease;
+  }
+  
+  .scroll-image {
+    
+    width: 105%;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  
 
 .explore-action-yellow {
     position: absolute;
@@ -296,4 +315,17 @@
         margin-top: 35px;
         
     }
+}
+/* Add this at the bottom of the file */
+
+.fade-in {
+    opacity: 1;
+    
+    transition: opacity 0.8s ease, transform 0.4s ease;
+}
+
+.fade-out {
+    opacity: 0.2;
+    
+    transition: opacity 0.8s ease, transform 0.4s ease;
 }
