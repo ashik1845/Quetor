@@ -9,6 +9,8 @@ import Services from './Services';
 import Explore from './Explore';
 import Support from './Support';
 import ScrollToTop from './ScrollToTop';
+import ScrollPage from './ScrollSection';
+import Scroll from './Scroll';
 const App = () => {
   return (
     <>
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/" element={
           <>
             <HomeHeader />
+            
+            <Scroll/>
             <HomeQuote />
             <Ready/>
             <Footer/>

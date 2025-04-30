@@ -275,8 +275,8 @@ const Aboutkeyfeatures = () => {
                       className="curve-fill"
                     />
                   </svg>
-                  <div className="arrow-container">
-                    <img src={arrow} alt="Arrow" className="arrow-image" />
+                  <div className="about-arrow-container">
+                    <img src={arrow} alt="Arrow" className="about-arrow-image" />
                   </div>
                 </>
               )}

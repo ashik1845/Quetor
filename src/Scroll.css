@@ -1,0 +1,640 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Nunito:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+
+.home {
+  background-color: #ffffff;
+  display: flex;
+  padding-bottom: 67px;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.top-header {
+  background-color: #ffffff;
+  display: flex;
+  min-height: 74px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.main-content {
+  display: flex;
+  margin-top: 54px;
+  width: 100%;
+  padding: 0 26px;
+  flex-direction: column;
+  font-family: Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 25px;
+  color: #4d4d4d;
+  font-weight: 500;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.logo {
+  aspect-ratio: 1.6;
+  object-fit: contain;
+  object-position: center;
+  width: 109px;
+  border-radius: 0;
+  max-width: 100%;
+  align-self: flex-start;
+}
+
+.welcome-section {
+  display: flex;
+  margin-top: 26px;
+  width: 100%;
+  max-width: 1079px;
+  align-items: center;
+  gap: 40px 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.welcome-text {
+  width: 100%;
+  max-width: 839px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.welcome-text.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-secondary {
+  aspect-ratio: 1.6;
+  object-fit: contain;
+  object-position: center;
+  width: 109px;
+  border-radius: 0;
+  max-width: 100%;
+  position: absolute;
+  right: 15px; /* Changed from 30px to 15px to move closer to border */
+  bottom: 30px;
+  transition: right 0.5s ease;
+}
+
+.logo-secondary.move-right {
+  right: 5px; /* Changed from 10px to 5px to move closer to border when scrolling */
+}
+
+.section-title {
+  color: #000000;
+  font-size: 40px;
+  align-self: center;
+  margin-top: 31px;
+  font-weight: normal;
+  text-align: center;
+  position: relative; /* Added for cursor detection */
+  z-index: 10; /* Higher z-index for detection */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-title.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.title-bold {
+  font-weight: 700;
+}
+
+.title-highlight {
+  font-weight: 700;
+  color: #ffc365;
+}
+
+.section-subtitle {
+  font-weight: 400;
+  line-height: 53px;
+  text-align: center;
+  align-self: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  position: relative; /* Added for cursor detection */
+  z-index: 10; /* Higher z-index for detection */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-subtitle.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Horizontal Carousel Styles */
+.carousel-container {
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  overflow: hidden;
+  height: 650px; /* Increased from 600px to 650px for larger content */
+  margin: 0; /* Removed margin to touch edges */
+  max-width: 100%; /* Ensure full width */
+  background-image: url("https://cdn.builder.io/api/v1/image/assets/TEMP/699d05cdce10f69a81a9e7f32412bcd687c92106?placeholderIfAbsent=true&apiKey=4acc46a3adac44769aea22a57a9ad87e");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carousel-container.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Cursor-sensitive area above and below carousel */
+.carousel-sensor-area {
+  position: absolute;
+  width: 100%;
+  height: 1cm; /* 1cm height for detection area */
+  z-index: 5; /* Allow events to pass through */
+}
+
+.carousel-sensor-top {
+  top: -2cm; /* Position 1cm above carousel */
+}
+
+.carousel-sensor-bottom {
+  bottom: -2cm; /* Position 1cm below carousel */
+}
+
+.carousel-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 40px; /* Reduced from 40px to 30px to decrease distance between sections */
+}
+
+.carousel-track {
+  display: flex;
+  width: 300%; /* 3 slides */
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother transition with cubic-bezier */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-slide {
+  width: 33.333%;
+  flex-shrink: 0;
+  padding: 0px; /* Reduced from 40px to 25px to decrease distance between sections */
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1; /* All slides visible for smoother transition */
+  position: relative; /* Added for watermark positioning */
+}
+
+/* Connector images between slides - INCREASED SIZE */
+.connector-arrow {
+  position: absolute;
+  z-index: 10;
+  width: 180px; /* Increased from 120px to 180px for much bigger size */
+  height: auto;
+  filter: drop-shadow(
+    0 0 5px rgba(255, 255, 255, 0.7)
+  ); /* Added shadow for better visibility */
+}
+
+.connector-1-2 {
+  right: -20px; /* Moved further right to better connect sections */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.connector-2-3 {
+  right: -20px; /* Moved further right to better connect sections */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Watermark styles - UPDATED to position behind text only */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 65%; /* Moved from 50% to 65% to position behind text */
+  transform: translate(-50%, -50%);
+  font-size: 250px; /* Increased from 220px to 250px */
+  font-weight: 700;
+  color: rgba(255, 195, 101, 0.2); /* Increased opacity from 0.15 to 0.2 */
+  z-index: 1;
+  pointer-events: none;
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  width: 50%; /* Reduced from 100% to 50% to focus behind text */
+}
+
+/* Step 1: Upload Source - Removed white background */
+.step-upload {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px; /* Increased from 800px to 900px */
+  padding: 25px; /* Reduced from 30px to 25px to decrease distance */
+  /* Removed background-color and box-shadow */
+  position: relative; /* For proper positioning relative to watermark */
+  z-index: 2;
+}
+
+.step-upload-row {
+  display: flex;
+  gap: 20px; /* Reduced from 30px to 20px to decrease distance */
+  align-items: center;
+}
+
+.upload-image-column {
+  width: 48%; /* Increased from 45% to 48% */
+  position: relative; /* Added for z-index control */
+  z-index: 3; /* Higher than watermark */
+}
+
+.upload-image {
+  aspect-ratio: 1.22;
+  object-fit: contain;
+  object-position: left;
+  width: 140%; /* Increased from 120% to 140% */
+  max-width: none; /* Allow image to exceed container width */
+}
+
+.upload-text-column {
+  width: 52%; /* Increased from 55% to 52% */
+  position: relative; /* Added for z-index control */
+  z-index: 2; /* Lower than image but higher than watermark */
+}
+
+.upload-text {
+  color: #000000;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Added text shadow for readability */
+  position: relative; /* Added for z-index control */
+}
+
+/* Step 2: Select Parameters - Removed white background */
+.step-parameters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px; /* Increased from 800px to 900px */
+  padding: 25px; /* Reduced from 30px to 25px to decrease distance */
+  /* Removed background-color and box-shadow */
+  position: relative; /* For proper positioning relative to watermark */
+  z-index: 2;
+}
+
+.parameters-row {
+  display: flex;
+  gap: 20px; /* Reduced from 30px to 20px to decrease distance */
+  align-items: center;
+}
+
+.parameters-text-column {
+  width: 52%; /* Increased from 50% to 52% */
+  position: relative; /* Added for z-index control */
+  z-index: 2; /* Lower than image but higher than watermark */
+}
+
+.parameters-image-column {
+  width: 48%; /* Decreased from 50% to 48% */
+  display: flex;
+  justify-content: center;
+  position: relative; /* Added for z-index control */
+  z-index: 3; /* Higher than watermark */
+}
+
+.parameters-image {
+  aspect-ratio: 3;
+  object-fit: contain;
+  object-position: center;
+  width: 140%; /* Increased from 120% to 140% */
+  max-width: none; /* Allow image to exceed container width */
+}
+
+/* Step 3: Generate & Save - Removed white background */
+.step-generate {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px; /* Increased from 800px to 900px */
+  padding: 25px; /* Reduced from 30px to 25px to decrease distance */
+  /* Removed background-color and box-shadow */
+  position: relative; /* For proper positioning relative to watermark */
+  z-index: 2;
+}
+
+.generate-row {
+  display: flex;
+  gap: 20px; /* Reduced from 30px to 20px to decrease distance */
+  align-items: center;
+}
+
+.generate-image-column {
+  width: 48%; /* Increased from 45% to 48% */
+  position: relative; /* Added for z-index control */
+  z-index: 3; /* Higher than watermark */
+}
+
+.generate-image {
+  aspect-ratio: 2.8;
+  object-fit: contain;
+  object-position: center;
+  width: 140%; /* Increased from 120% to 140% */
+  max-width: none; /* Allow image to exceed container width */
+}
+
+.generate-text-column {
+  width: 52%; /* Decreased from 55% to 52% */
+  position: relative; /* Added for z-index control */
+  z-index: 2; /* Lower than image but higher than watermark */
+}
+
+.step-title {
+  font-size: 65px; /* Increased from 60px to 65px */
+  color: #b80c09;
+  display: block;
+  line-height: 1.1;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Added text shadow for readability */
+}
+
+.step-description {
+  font-size: 28px; /* Increased from 25px to 28px */
+  display: block;
+  margin-top: 16px;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Added text shadow for readability */
+}
+
+/* Scroll indicator - Hidden as requested */
+.scroll-indicator {
+  display: none; /* Hide the navigation dots */
+}
+
+/* Progress message */
+.progress-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.progress-message.visible {
+  opacity: 1;
+}
+
+.client-showcase {
+  color: #1e1e1e;
+  font-size: 40px;
+  font-family: Nunito, -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  align-self: center;
+  margin-top: 50px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.client-showcase.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.client-testimonial {
+  color: #4d4d4d;
+  font-size: 25px;
+  font-family: Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 500;
+  text-align: center;
+  align-self: center;
+  margin-top: 15px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.client-testimonial.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.client-name {
+  font-size: 30px;
+  color: #ffc365;
+}
+
+.client-logos {
+  align-self: center;
+  display: flex;
+  margin-top: 63px;
+  margin-left: 94px;
+  width: 501px;
+  max-width: 100%;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.client-logos.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.client-logo-main {
+  aspect-ratio: 2.36;
+  object-fit: contain;
+  object-position: center;
+  width: 231px;
+  margin-left: 63px;
+}
+
+.client-logo-small {
+  aspect-ratio: 2.5;
+  object-fit: contain;
+  object-position: center;
+  width: 25px;
+  align-self: start;
+  margin-top: 27px;
+  flex-shrink: 0;
+}
+
+.zoom-element {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.zoom-element.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Arrow image styles */
+.arrow-image {
+  width: 80px; /* Increased from 50px to 80px */
+  height: auto;
+  margin: 0 15px; /* Reduced from 20px to 15px to decrease distance */
+}
+
+@media (max-width: 991px) {
+  body::before {
+    border-width: 8px;
+  }
+
+  .top-header {
+    max-width: 100%;
+  }
+
+  .main-content {
+    max-width: 100%;
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+
+  .welcome-section {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .welcome-text {
+    max-width: 100%;
+  }
+
+  .logo-secondary {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 40px;
+    align-self: center;
+  }
+
+  .section-subtitle {
+    max-width: 100%;
+  }
+
+  .carousel-container {
+    height: 750px; /* Increased from 700px to 750px for larger content on mobile */
+  }
+
+  .carousel-slide {
+    padding: 15px; /* Reduced from 20px to 15px to decrease distance */
+  }
+
+  .watermark {
+    font-size: 160px; /* Increased from 140px to 160px */
+    left: 60%; /* Adjusted for mobile */
+  }
+
+  .client-testimonial {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .client-logos {
+    margin-top: 40px;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .client-logo-main {
+    margin-left: 0;
+  }
+
+  /* Carousel responsive styles */
+  .step-upload-row,
+  .parameters-row,
+  .generate-row {
+    flex-direction: column;
+    gap: 15px; /* Reduced from 20px to 15px to decrease distance */
+  }
+
+  .upload-image-column,
+  .upload-text-column,
+  .parameters-text-column,
+  .parameters-image-column,
+  .generate-image-column,
+  .generate-text-column {
+    width: 100%;
+  }
+
+  .upload-image,
+  .parameters-image,
+  .generate-image {
+    width: 120%; /* Increased from 100% to 120% on mobile */
+  }
+
+  .step-title {
+    font-size: 45px; /* Increased from 40px to 45px */
+    margin-top: 15px; /* Reduced from 20px to 15px to decrease distance */
+  }
+
+  .step-description {
+    font-size: 22px; /* Increased from 20px to 22px */
+  }
+
+  .step-upload,
+  .step-parameters,
+  .step-generate {
+    padding: 15px; /* Reduced from 20px to 15px to decrease distance */
+  }
+
+  .connector-arrow {
+    width: 100px; /* Increased from 70px to 100px */
+  }
+
+  .arrow-image {
+    width: 60px; /* Increased from 50px to 60px on mobile */
+    margin: 0 10px; /* Reduced from 15px to 10px to decrease distance */
+  }
+}
+.fade-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-scale.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}

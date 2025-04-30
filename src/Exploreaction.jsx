@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Exploreaction.css';
 import exploreactionbox from './assets/exploreactionbox.png';
-import exploreactionimage1 from './assets/exploreactionimage1.png';
-import exploreactionimage2 from './assets/exploreactionimage2.png';
-import exploreactionimage3 from './assets/exploreactionimage3.png';
-import exploreactionimage4 from './assets/exploreactionimage4.png';
+import exploreactionimage1 from './assets/Login.png';
+import exploreactionimage2 from './assets/College_Dashboard.png';
+import exploreactionimage3 from './assets/Login_History.png';
+import exploreactionimage4 from './assets/Institute_Save.png';
 import exploreactionyellow from './assets/exploreactionyellow.png';
 import exploreactionsmall from './assets/exploreactionsmall.png';
 

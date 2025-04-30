@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+.scroll-steps-wrapper {
+  overflow-x: hidden;
+  position: relative;
+  
+}
+
+.scroll-steps-container {
+  display: flex;
+  width: 300vw;
+}
+
+.scroll-steps-container section {
+  width: 100vw;
+  height: 80vh;
+  padding: 15vw 10vw;
+  color: Black;
+  background-image: linear-gradient(
+    to bottom,
+    white 0%,
+    white 20%,
+    #f9e5b0 20%,
+    #f9e5b0 80%,
+    white 80%,
+    white 100%
+  );
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.scroll-steps-contents {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10vw;
+}
+
+.scroll-step-illustration1 {
+  width: 20vw;
+}
+
+.scroll-step-illustration2 {
+  width: 20vw;
+}
+
+.scroll-step-illustration3 {
+  width: 20vw;
+}
+
+.scroll-step-arrow {
+  width: 20vw;
+  position: absolute;
+  right: 0;
+}
+
+.scroll-step-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.scroll-step-number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-60%, -50%);
+  font-size: 10rem;
+  font-family: Impact;
+  color: rgb(255, 195, 101, 0.4);
+}
+
+.scroll-step-heading {
+  font-family: Montserrat;
+  font-size: 2rem;
+  color: #b20c0c;
+  z-index: 5;
+}
+
+.scroll-step-body {
+  font-family: Montserrat;
+  font-size: 1.1rem;
+  color: #333333;
+  z-index: 5;
+  max-width: 35vw;
+}

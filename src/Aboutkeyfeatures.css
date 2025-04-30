@@ -92,7 +92,7 @@
   font-weight: 400;
 }
 
-.arrow-container {
+.about-arrow-container {
   position: absolute;
   top: 30px;
   left: 51%;
@@ -103,7 +103,7 @@
   pointer-events: none;
 }
 
-.arrow-image {
+.about-arrow-image {
   width: 100%;
   height: 100%;
   transform-origin: bottom center;
@@ -122,7 +122,7 @@
   stroke-dashoffset: 250;
 }
 
-.fill-curve .arrow-image {
+.fill-curve .about-arrow-image {
   transform: rotate(43deg);
 }
 
@@ -157,7 +157,7 @@
     top: -15px;
   }
 
-  .arrow-container {
+  .about-arrow-container {
     position: absolute;
     top: 12px;
     left: 51%;
